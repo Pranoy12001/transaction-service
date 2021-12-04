@@ -11,7 +11,7 @@ public class RequestValidator {
             throw ClientException.create("400", "invalid request", null);
         } else if (Objects.isNull(transaction.getRequestId())
                 || Objects.isNull(transaction.getRequester())
-                || Objects.isNull(transaction.getTransactionType())
+                || Objects.isNull(transaction.getEncodedTransactionType())
                 || Objects.isNull(transaction.getEncodedTransactionType())
                 || Objects.isNull(transaction.getEncodedAmount())
                 || Objects.isNull(transaction.getEncodedDestinationAccountNumber())
