@@ -13,10 +13,12 @@ Database information:
         request_id varchar(255) not null,
         amount double precision not null,
         destination_account_number varchar(255),
-        note varchar(255), requester varchar(255),
+        note varchar(255),
+        requester varchar(255),
         source_account_number varchar(255),
         transaction_time varchar(255),
-        transaction_type varchar(255), primary key (request_id)
+        transaction_type varchar(255),
+        PRIMARY KEY key (request_id)
     );
 
     INSERT INTO account (account_number, address, balance, name, status)
