@@ -10,15 +10,15 @@ Database information:
     );
 
     create table transaction(
-        request_id varchar(255) not null,
-        amount double precision not null,
+        request_id varchar(255) NOT NULL,
+        amount double NOT NULL,
         destination_account_number varchar(255),
         note varchar(255),
         requester varchar(255),
         source_account_number varchar(255),
         transaction_time varchar(255),
         transaction_type varchar(255),
-        PRIMARY KEY key (request_id)
+        PRIMARY KEY (request_id)
     );
 
     INSERT INTO account (account_number, address, balance, name, status)
