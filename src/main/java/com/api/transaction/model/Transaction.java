@@ -1,11 +1,11 @@
 package com.api.transaction.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
-import org.springframework.lang.NonNull;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
@@ -14,28 +14,19 @@ public class Transaction {
     @Id
     @Column(name = "request_id", nullable = false)
     private String requestId;
+    @NotNull
     private Date transactionTime;
+    @NotNull
     private String requester;
-    @JsonIgnore
+    @NotNull
     private String transactionType;
-    @Transient
-    @JsonProperty(value = "transactionType")
-    private String encodedTransactionType;
-    @JsonIgnore
+    @NotNull
     private String sourceAccountNumber;
-    @Transient
-    @JsonProperty(value = "sourceAccountNumber")
-    private String encodedSourceAccountNumber;
-    @JsonIgnore
+    @NotNull
     private double amount;
-    @Transient
-    @JsonProperty(value = "amount")
-    private String encodedAmount;
-    @JsonIgnore
+    @NotNull
     private String destinationAccountNumber;
-    @Transient
-    @JsonProperty(value = "destinationAccountNumber")
-    private String encodedDestinationAccountNumber;
+    @NotNull
     private String note;
 
     public String getRequestId() {
@@ -100,38 +91,6 @@ public class Transaction {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public String getEncodedTransactionType() {
-        return encodedTransactionType;
-    }
-
-    public void setEncodedTransactionType(String encodedTransactionType) {
-        this.encodedTransactionType = encodedTransactionType;
-    }
-
-    public String getEncodedSourceAccountNumber() {
-        return encodedSourceAccountNumber;
-    }
-
-    public void setEncodedSourceAccountNumber(String encodedSourceAccountNumber) {
-        this.encodedSourceAccountNumber = encodedSourceAccountNumber;
-    }
-
-    public String getEncodedAmount() {
-        return encodedAmount;
-    }
-
-    public void setEncodedAmount(String encodedAmount) {
-        this.encodedAmount = encodedAmount;
-    }
-
-    public String getEncodedDestinationAccountNumber() {
-        return encodedDestinationAccountNumber;
-    }
-
-    public void setEncodedDestinationAccountNumber(String encodedDestinationAccountNumber) {
-        this.encodedDestinationAccountNumber = encodedDestinationAccountNumber;
     }
 
     @Override
