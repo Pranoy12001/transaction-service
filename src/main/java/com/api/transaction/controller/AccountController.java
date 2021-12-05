@@ -7,10 +7,10 @@ import com.api.transaction.validator.RequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ import static com.api.transaction.constant.AccountConstant.*;
 /**
  * Account Controller
  */
-@Controller
+@RestController
 public class AccountController {
     private AccountService accountService;
 
@@ -50,7 +50,7 @@ public class AccountController {
      * @param payload payload of the request{@link TransactionPayload}
      * @return code and message as a Map {@link ResponseEntity}
      */
-    @PostMapping("/transfer-money")
+    @PostMapping("/transfer/money")
     public ResponseEntity<Map> triggerTransaction(@RequestBody TransactionPayload payload) {
         try {
             RequestValidator.validate(payload);
@@ -60,7 +60,7 @@ public class AccountController {
         return accountService.updateAccount(payload);
     }
 
-    private ResponseEntity<Map> getErrorResponseEntity(Exception ex) {
+    private ResponseEntity<Map> getErrorResponseEntity(ClientException ex) {
         ClientException clientException =
                 ClientException.create(String.valueOf(HttpStatus.BAD_REQUEST.value()), INVALID_REQUEST_MESSAGE, ex);
         Map<String, String> errorMap = new HashMap<>();

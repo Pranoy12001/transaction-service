@@ -97,18 +97,14 @@ public class AccountServiceImpl implements AccountService {
             AccountValidator.validate(sourceAccount, destinationAccount, transaction);
             sourceAccount.setBalance(sourceAccount.getBalance() - transaction.getAmount());
             destinationAccount.setBalance(destinationAccount.getBalance() + transaction.getAmount());
-            accountRepository.save(sourceAccount);
-            accountRepository.save(destinationAccount);
-            transaction.setTransactionTime(new Date());
-            transactionRepository.save(transaction);
-        } else if (transaction.getTransactionType().equals(REVERSE)) {
+        } else  {
             AccountValidator.validate(sourceAccount, destinationAccount, transaction);
             sourceAccount.setBalance(sourceAccount.getBalance() + transaction.getAmount());
             destinationAccount.setBalance(destinationAccount.getBalance() - transaction.getAmount());
-            accountRepository.save(sourceAccount);
-            accountRepository.save(destinationAccount);
-            transaction.setTransactionTime(new Date());
-            transactionRepository.save(transaction);
         }
+        accountRepository.save(sourceAccount);
+        accountRepository.save(destinationAccount);
+        transaction.setTransactionTime(new Date());
+        transactionRepository.save(transaction);
     }
 }
