@@ -5,9 +5,9 @@
     Curl: </br>
     curl --location --request GET 'localhost:8081/test-application'
 </br></br>
-<b>Perform Transaction</b>: localhost:8081/transfer-money </br>
+<b>Perform Transaction</b>: localhost:8081/transfer/money </br>
 Curl: </br>
-curl --location --request POST 'localhost:8081/transfer-money' \
+curl --location --request POST 'localhost:8081/transfer/money' \
 --header 'Content-Type: application/json' \
 --data-raw '{
 "requestId": "XYZ App",
